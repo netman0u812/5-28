@@ -1,0 +1,92 @@
+
+<style>
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; }
+.metric-label { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 4px; }
+.metric-val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin: 0; }
+.metric-val.danger { color: #A32D2D; }
+.metric-val.warn { color: #854F0B; }
+.section { margin-bottom: 1.5rem; }
+.section-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 13px; }
+.bar-label { width: 180px; flex-shrink: 0; color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { flex: 1; height: 16px; background: var(--color-background-secondary); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; }
+.bar-count { width: 28px; text-align: right; color: var(--color-text-primary); font-weight: 500; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.risk-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; }
+.risk-row:last-child { border-bottom: none; }
+.badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+.badge-red { background: #FCEBEB; color: #A32D2D; }
+.badge-amber { background: #FAEEDA; color: #854F0B; }
+.badge-teal { background: #E1F5EE; color: #0F6E56; }
+.device-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.device-table th { text-align: left; font-weight: 500; color: var(--color-text-secondary); font-size: 12px; padding: 4px 8px 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.device-table td { padding: 6px 8px 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); vertical-align: top; }
+.device-table tr:last-child td { border-bottom: none; }
+</style>
+
+<h2 class="sr-only">Sourcefire/FTD firewall inventory analysis — 75 devices across 15 sites</h2>
+
+<div class="metric-grid">
+  <div class="metric"><p class="metric-label">Total devices</p><p class="metric-val">75</p></div>
+  <div class="metric"><p class="metric-label">Undocumented</p><p class="metric-val danger">31</p></div>
+  <div class="metric"><p class="metric-label">Past end of support</p><p class="metric-val danger">15</p></div>
+  <div class="metric"><p class="metric-label">Not accessible</p><p class="metric-val warn">61</p></div>
+  <div class="metric"><p class="metric-label">Not in Netbrain</p><p class="metric-val warn">64</p></div>
+  <div class="metric"><p class="metric-label">FMC-managed</p><p class="metric-val">35</p></div>
+</div>
+
+<div class="two-col">
+  <div class="section">
+    <p class="section-title">Device type breakdown</p>
+    <div class="bar-row"><span class="bar-label">Sourcefire (IDS/IPS)</span><div class="bar-track"><div class="bar-fill" style="width:100%; background:#185FA5;"></div></div><span class="bar-count">23</span></div>
+    <div class="bar-row"><span class="bar-label">FTD</span><div class="bar-track"><div class="bar-fill" style="width:95%; background:#1D9E75;"></div></div><span class="bar-count">22</span></div>
+    <div class="bar-row"><span class="bar-label">FTD ASA</span><div class="bar-track"><div class="bar-fill" style="width:87%; background:#3C3489;"></div></div><span class="bar-count">20</span></div>
+    <div class="bar-row"><span class="bar-label">FMC</span><div class="bar-track"><div class="bar-fill" style="width:26%; background:#888780;"></div></div><span class="bar-count">6</span></div>
+    <div class="bar-row"><span class="bar-label">FX-OS (chassis)</span><div class="bar-track"><div class="bar-fill" style="width:9%; background:#BA7517;"></div></div><span class="bar-count">2</span></div>
+
+    <p class="section-title" style="margin-top:1.25rem">By location (top 5)</p>
+    <div class="bar-row"><span class="bar-label">Shea DC (Scottsdale AZ)</span><div class="bar-track"><div class="bar-fill" style="width:100%; background:#185FA5;"></div></div><span class="bar-count">22</span></div>
+    <div class="bar-row"><span class="bar-label">Woonsocket RI (CVS Sec)</span><div class="bar-track"><div class="bar-fill" style="width:95%; background:#185FA5;"></div></div><span class="bar-count">21</span></div>
+    <div class="bar-row"><span class="bar-label">Woonsocket RI (iLAB)</span><div class="bar-track"><div class="bar-fill" style="width:23%; background:#185FA5;"></div></div><span class="bar-count">5</span></div>
+    <div class="bar-row"><span class="bar-label">Mattersight sites (×9)</span><div class="bar-track"><div class="bar-fill" style="width:82%; background:#888780;"></div></div><span class="bar-count">18</span></div>
+    <div class="bar-row"><span class="bar-label">Middletown/Windsor CT</span><div class="bar-track"><div class="bar-fill" style="width:18%; background:#3C3489;"></div></div><span class="bar-count">4</span></div>
+  </div>
+
+  <div class="section">
+    <p class="section-title">End-of-support status</p>
+    <div class="risk-row"><span>EOS 2022-03-31 — FMC 4000 ×3</span><span class="badge badge-red">3+ yrs expired</span></div>
+    <div class="risk-row"><span>EOS 2022-12-31 — FP 8150 ×2</span><span class="badge badge-red">2+ yrs expired</span></div>
+    <div class="risk-row"><span>EOS 2024-06-30 — FP 8350 ×8</span><span class="badge badge-red">Expired</span></div>
+    <div class="risk-row"><span>EOS 2025-08-31 — FP 8350 ×2 (Aetna)</span><span class="badge badge-red">Expired</span></div>
+    <div class="risk-row"><span>EOS unknown — 25 devices</span><span class="badge badge-amber">Unverified</span></div>
+    <div class="risk-row"><span>EOS 2028-11 — FP 4600 ×2</span><span class="badge badge-teal">In support</span></div>
+    <div class="risk-row"><span>EOS 2031 — FP 4145 ×25</span><span class="badge badge-teal">In support</span></div>
+
+    <p class="section-title" style="margin-top:1.25rem">Tooling coverage</p>
+    <div class="risk-row"><span>In SolarWinds</span><span>42 / 75 (56%)</span></div>
+    <div class="risk-row"><span>In ServiceNow</span><span>53 / 75 (71%)</span></div>
+    <div class="risk-row"><span>In Netbrain</span><span>4 / 75 (5%)</span></div>
+    <div class="risk-row"><span>In NO tool</span><span style="color:#A32D2D; font-weight:500">17 devices</span></div>
+    <div class="risk-row"><span>FMC-managed (confirmed)</span><span>35 / 69 FW/IDS (51%)</span></div>
+    <div class="risk-row"><span>FMC unknown</span><span style="color:#854F0B; font-weight:500">27 devices</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">Key function segments</p>
+  <table class="device-table">
+    <thead><tr><th>Segment</th><th>Count</th><th>Location</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Mattersight VoIP/Call Center</td><td>18</td><td>9 distributed sites</td><td>All FTD ASA, all SSH-only, none FMC-managed, all model Unknown</td></tr>
+      <tr><td>128T Retail IPS</td><td>8</td><td>Shea (4) + Woonsocket (4)</td><td>All FP 4145, all undocumented, EOS 2031</td></tr>
+      <tr><td>Enterprise MPLS Net4</td><td>4</td><td>Shea (2) + Woonsocket (2)</td><td>All FP 4145, undocumented, in no tool</td></tr>
+      <tr><td>Retail legacy B2BVPN</td><td>3</td><td>Woonsocket</td><td>FP 4112, partially undocumented</td></tr>
+      <tr><td>Retail legacy decommissions</td><td>4</td><td>Woonsocket</td><td>ATG (Apr-24?) + DotCom (May-24?) — still present</td></tr>
+      <tr><td>Aetna stacks (MID + WDC)</td><td>4</td><td>Middletown CT + Windsor CT</td><td>FP 8350, all undocumented, EOS expired, local creds</td></tr>
+      <tr><td>RI iLAB</td><td>5</td><td>Woonsocket iLAB</td><td>FP 4145 + FMC, all undocumented, in no management tool</td></tr>
+      <tr><td>Shea Internet / IXIA Fabric</td><td>5</td><td>Shea DC</td><td>FP 8350 / 9300, partially undocumented, EOS concerns</td></tr>
+    </tbody>
+  </table>
+</div>
